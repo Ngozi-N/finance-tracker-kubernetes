@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finance-tracker-frontend
+  namespace: finance-tracker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: finance-tracker-frontend
+  template:
+    metadata:
+      labels:
+        app: finance-tracker-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: <aws_account_id>.dkr.ecr.eu-west-2.amazonaws.com/finance-tracker-frontend:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REACT_APP_BACKEND_URL
+          valueFrom:
+            configMapKeyRef:
+              name: finance-tracker-config
+              key: BACKEND_URL
