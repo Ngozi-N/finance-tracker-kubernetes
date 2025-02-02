@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: <aws_account_id>.dkr.ecr.eu-west-2.amazonaws.com/finance-tracker-frontend:latest
+        image: ngozin/finance-tracker-frontend:latest
         ports:
         - containerPort: 3000
         env:
